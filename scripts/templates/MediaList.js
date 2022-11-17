@@ -1,6 +1,7 @@
 class MediaList {
-  constructor(media) {
+  constructor(media, photographer) {
     this._media = media;
+    this._photographer = photographer;
   }
 
   createMediaList(type) {

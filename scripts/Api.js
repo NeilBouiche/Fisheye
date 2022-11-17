@@ -33,9 +33,7 @@ class Api {
     return fetch(this._url)
       .then((response) => response.json())
       .then((response) => {
-        return response.media.filter(
-          (media) => media.photographerId === userId
-        );
+        return response.media.filter((media) => media.photographerId == userId);
       })
       .catch((err) => {
         throw new Error("La requete api getPhotographer a échoué : ", err);
