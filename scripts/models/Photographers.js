@@ -1,4 +1,4 @@
-// class model des photographes
+// class modele des photographes
 
 class Photographers {
   constructor(data) {

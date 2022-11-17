@@ -1,1 +1,41 @@
-//Mettre le code JavaScript lié à la page photographer.html
+//Class qui se charge de connecter a l'api et insert les templates neccessaires a la construction de la page
+
+class Profil {
+  constructor() {
+    this.$main = document.getElementById("main");
+    this.photographersApi = new Api("./data/photographers.json");
+    this.idQuery = new URL(document.location).searchParams;
+    this.id = this.idQuery.get("id");
+  }
+
+  async main() {
+    // Utilisation du fetch ne retournant que le bon utilisateur
+    const photographerIdedData =
+      await this.photographersApi.getPhotographerById(this.id);
+    // Creation d'un photographe pour le profile et assignement de la banner
+    const IdedPhotographer = new Photographers(photographerIdedData);
+    const TemplateBanner = new Banner(IdedPhotographer);
+    this.$main.appendChild(TemplateBanner.createBanner());
+
+    // Insertion de la liste des posts et detecte la source du media dans le template
+    const allMediasData = await this.photographersApi.getAllMedias();
+    allMediasData.forEach((e) => {
+      //Image
+      if (e.hasOwnProperty("image") && e.photographerId == this.id) {
+        const mediaImage = new MediaFactory("image", e);
+        const TemplateImage = new MediaList(mediaImage);
+        console.log(TemplateImage);
+        this.$main.appendChild(TemplateImage.createMediaList("image"));
+        // Video
+      } else if (e.hasOwnProperty("video") && e.photographerId == this.id) {
+        const mediaVideo = new MediaFactory("video", e);
+        const TemplateVideo = new MediaList(mediaVideo);
+        console.log(TemplateVideo);
+        this.$main.appendChild(TemplateVideo.createMediaList("video"));
+      }
+    });
+  }
+}
+
+const profil = new Profil();
+profil.main();

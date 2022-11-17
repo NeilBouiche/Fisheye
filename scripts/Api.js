@@ -5,19 +5,51 @@ class Api {
     this._url = url;
   }
 
-  async get() {
-    return fetch(this._url)
-      .then((res) => res.json())
-      .catch((err) => JSON.parse(JSON.stringify(err)));
-  }
-}
-
-class PhotographersApi extends Api {
-  constructor(url) {
-    super(url);
-  }
-
   async getPhotographers() {
-    return await this.get();
+    return fetch(this._url)
+      .then((response) => response.json())
+      .then((response) => {
+        return response.photographers;
+      })
+      .catch((err) => {
+        throw new Error("La requete api getPhotographer a échoué : ", err);
+      });
+  }
+
+  async getPhotographerById(userId) {
+    return fetch(this._url)
+      .then((response) => response.json())
+      .then((response) => {
+        return response.photographers.filter(
+          (photographer) => photographer.id == userId
+        )[0];
+      })
+      .catch((err) => {
+        throw new Error("La requete api getPhotographer a échoué : ", err);
+      });
+  }
+
+  async getPortfolioByUserId(userId) {
+    return fetch(this._url)
+      .then((response) => response.json())
+      .then((response) => {
+        return response.media.filter(
+          (media) => media.photographerId === userId
+        );
+      })
+      .catch((err) => {
+        throw new Error("La requete api getPhotographer a échoué : ", err);
+      });
+  }
+
+  async getAllMedias() {
+    return fetch(this._url)
+      .then((response) => response.json())
+      .then((response) => {
+        return response.media;
+      })
+      .catch((err) => {
+        throw new Error("La requete api getPhotographer a échoué : ", err);
+      });
   }
 }

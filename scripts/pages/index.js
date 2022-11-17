@@ -5,17 +5,15 @@ class Accueil {
     this.$photographersWrapper = document.querySelector(
       ".photographer_section"
     );
-    this.photographersApi = new PhotographersApi("./data/photographers.json");
+    this.photographersApi = new Api("./data/photographers.json");
   }
 
   async main() {
     let photographersData = await this.photographersApi.getPhotographers();
-    photographersData = photographersData.photographers;
 
     photographersData
       .map((photographer) => new Photographers(photographer))
       .forEach((photographer) => {
-        console.log(photographer);
         const Template = new PhotographerCard(photographer);
         this.$photographersWrapper.appendChild(
           Template.createPhotographerCard()
