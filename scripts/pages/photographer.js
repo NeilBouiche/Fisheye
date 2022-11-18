@@ -3,6 +3,7 @@
 class Profil {
   constructor() {
     this.$main = document.getElementById("main");
+    this.$body = document.querySelector("body");
     this.photographersApi = new Api("./data/photographers.json");
     this.idQuery = new URL(document.location).searchParams;
     this.id = this.idQuery.get("id");
@@ -19,7 +20,7 @@ class Profil {
     //Insertion du filtre
     const postFilter = new Filter();
     this.$main.appendChild(postFilter.createFilter());
-    const filterBehavior = postFilter.dropDownhandler();
+    postFilter.dropDownhandler();
     // Insertion de la liste des posts et detecte la source du media dans le template
     const allMediasData = await this.photographersApi.getAllMedias();
     allMediasData.forEach((e) => {
@@ -46,6 +47,17 @@ class Profil {
     }
     const userLanguette = new Languette(totalLikes, photographerIdedData);
     this.$main.appendChild(userLanguette.createLanguette());
+    // Insertion de la lightbox apres tri des informations passed
+    const mediaCollection = document.getElementsByClassName("post-media");
+    for (let i = 0; i < mediaCollection.length; i++) {
+      mediaCollection[i].addEventListener("click", () => {
+        const userLightBox = new LightBox(mediaCollection[i]);
+        const renderLightBox = userLightBox.createLightBox();
+        userLightBox.openLightBox();
+        userLightBox.closeLightBox();
+        this.$body.appendChild(renderLightBox);
+      });
+    }
   }
 }
 

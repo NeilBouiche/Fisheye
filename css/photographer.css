@@ -180,6 +180,11 @@
   border-radius: 5px;
 }
 
+.post-media:hover {
+  transform: scale(1.02);
+  transition: all ease-in-out 0.4s;
+}
+
 .post-container {
   margin-bottom: 2%;
 }
@@ -311,4 +316,52 @@ textarea {
 
 textarea:focus {
   outline: none;
+}
+
+/* LightBox */
+
+.lightbox-container {
+  width: 98vw;
+  height: 99vh;
+  justify-content: center;
+  align-items: center;
+  display: none;
+}
+
+.lightbox {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.lightbox-media {
+  width: 35rem;
+  height: auto;
+  object-fit: contain;
+}
+
+.lightbox-video {
+  width: 40rem;
+}
+
+.lightbox-text p {
+  color: #901c1c;
+  font-size: 26px;
+}
+
+.chevron {
+  font-size: 40px;
+  color: #901c1c;
+  margin: 0;
+  padding: 15%;
+}
+
+.close-lightbox {
+  font-size: 46px;
+  position: absolute;
+  right: 10%;
+  top: 10%;
 }
