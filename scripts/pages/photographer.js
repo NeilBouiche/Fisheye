@@ -29,11 +29,13 @@ class Profil {
         const mediaImage = new MediaFactory("image", e);
         const TemplateImage = new MediaList(mediaImage);
         this.$main.appendChild(TemplateImage.createMediaList("image"));
+        TemplateImage.increaseLike();
         // Video
       } else if (e.hasOwnProperty("video") && e.photographerId == this.id) {
         const mediaVideo = new MediaFactory("video", e);
         const TemplateVideo = new MediaList(mediaVideo);
         this.$main.appendChild(TemplateVideo.createMediaList("video"));
+        TemplateVideo.increaseLike();
       }
     });
     // Insertion de la languette customized (nombre de like et prix du photographe)
@@ -47,14 +49,17 @@ class Profil {
     }
     const userLanguette = new Languette(totalLikes, photographerIdedData);
     this.$main.appendChild(userLanguette.createLanguette());
-    // Insertion de la lightbox apres tri des informations passed
-    const mediaCollection = document.getElementsByClassName("post-media");
+    // Insertion de la lightbox apres tri des informations passé
+    let mediaCollection = document.getElementsByClassName("post-media");
+    mediaCollection = [...mediaCollection];
     for (let i = 0; i < mediaCollection.length; i++) {
       mediaCollection[i].addEventListener("click", () => {
         const userLightBox = new LightBox(mediaCollection[i]);
         const renderLightBox = userLightBox.createLightBox();
         userLightBox.openLightBox();
         userLightBox.closeLightBox();
+        userLightBox.prev(mediaCollection[i - 1]);
+        userLightBox.next(mediaCollection[i + 1]);
         this.$body.appendChild(renderLightBox);
       });
     }

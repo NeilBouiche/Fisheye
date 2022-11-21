@@ -25,7 +25,7 @@ class MediaList {
 
     if (type === "video") {
       const videoMedia = `
-            <video title="${this._media.title}" id="${this._media.id}" class="post-media post-video" src="${this._media.video}"></video>
+            <video title="${this._media.title}" id="${this._media.id}" class="post-media post-video" autoplay loop src="${this._media.video}"></video>
             <div>
                 <h3>${this._media.title}</h3>
                 <div>
@@ -38,5 +38,22 @@ class MediaList {
     }
     $wrapper.appendChild($postWrapper);
     return $wrapper;
+  }
+
+  increaseLike() {
+    let currentLike = this._media.likes;
+    const heartIcon = document.querySelector(".post-heart");
+    const iconClicked = false;
+    heartIcon.addEventListener("click", () => {
+      if (iconClicked === false) {
+        heartIcon.classList.replace("fa-regular", "fa-solid");
+        iconClicked === true;
+        currentLike++;
+      } else if (iconClicked === true) {
+        heartIcon.classList.replace("fa-solid", "fa-regular");
+        iconClicked === false;
+        currentLike--;
+      }
+    });
   }
 }
