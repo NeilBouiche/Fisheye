@@ -1,5 +1,4 @@
 //Class qui se charge de connecter a l'api et insert les templates neccessaires a la construction de la page
-
 class Profil {
   constructor() {
     this.$main = document.getElementById("main");
@@ -29,13 +28,11 @@ class Profil {
         const mediaImage = new MediaFactory("image", e);
         const TemplateImage = new MediaList(mediaImage);
         this.$main.appendChild(TemplateImage.createMediaList("image"));
-        TemplateImage.increaseLike();
         // Video
       } else if (e.hasOwnProperty("video") && e.photographerId == this.id) {
         const mediaVideo = new MediaFactory("video", e);
         const TemplateVideo = new MediaList(mediaVideo);
         this.$main.appendChild(TemplateVideo.createMediaList("video"));
-        TemplateVideo.increaseLike();
       }
     });
     // Insertion de la languette customized (nombre de like et prix du photographe)
@@ -49,6 +46,7 @@ class Profil {
     }
     const userLanguette = new Languette(totalLikes, photographerIdedData);
     this.$main.appendChild(userLanguette.createLanguette());
+    userLanguette.likeHandler();
     // Insertion de la lightbox apres tri des informations passé
     let mediaCollection = document.getElementsByClassName("post-media");
     mediaCollection = [...mediaCollection];

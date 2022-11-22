@@ -39,21 +39,4 @@ class MediaList {
     $wrapper.appendChild($postWrapper);
     return $wrapper;
   }
-
-  increaseLike() {
-    let currentLike = this._media.likes;
-    const heartIcon = document.querySelector(".post-heart");
-    const iconClicked = false;
-    heartIcon.addEventListener("click", () => {
-      if (iconClicked === false) {
-        heartIcon.classList.replace("fa-regular", "fa-solid");
-        iconClicked === true;
-        currentLike++;
-      } else if (iconClicked === true) {
-        heartIcon.classList.replace("fa-solid", "fa-regular");
-        iconClicked === false;
-        currentLike--;
-      }
-    });
-  }
 }

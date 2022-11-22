@@ -18,4 +18,26 @@ class Languette {
     $wrapper.innerHTML = languette;
     return $wrapper;
   }
+
+  likeHandler() {
+    const postHeart = document.querySelectorAll(".post-heart");
+    let postLike = document.querySelectorAll(".post-like");
+    let languetteLikeText = document.querySelector(".languette-like-text");
+    let isLiked = false;
+    postHeart.forEach((e) => {
+      e.addEventListener("click", () => {
+        if (!isLiked || e.classList.contains("fa-regular")) {
+          e.classList.replace("fa-regular", "fa-solid");
+          postLike.textContent++;
+          languetteLikeText.textContent++;
+          isLiked = true;
+        } else if ((isLiked = true && e.classList.contains("fa-solid"))) {
+          e.classList.replace("fa-solid", "fa-regular");
+          postLike.textContent--;
+          languetteLikeText.textContent--;
+          isLiked = false;
+        }
+      });
+    });
+  }
 }
