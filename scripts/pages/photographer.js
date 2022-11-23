@@ -20,21 +20,48 @@ class Profil {
     const postFilter = new Filter();
     this.$main.appendChild(postFilter.createFilter());
     postFilter.dropDownhandler();
+
     // Insertion de la liste des posts et detecte la source du media dans le template
     const allMediasData = await this.photographersApi.getAllMedias();
+    const newPostArray = [];
     allMediasData.forEach((e) => {
-      //Image
-      if (e.hasOwnProperty("image") && e.photographerId == this.id) {
-        const mediaImage = new MediaFactory("image", e);
-        const TemplateImage = new MediaList(mediaImage);
-        this.$main.appendChild(TemplateImage.createMediaList("image"));
-        // Video
-      } else if (e.hasOwnProperty("video") && e.photographerId == this.id) {
-        const mediaVideo = new MediaFactory("video", e);
-        const TemplateVideo = new MediaList(mediaVideo);
-        this.$main.appendChild(TemplateVideo.createMediaList("video"));
+      if (e.photographerId == this.id) {
+        newPostArray.push(e);
+        console.log(newPostArray);
+        const filteredPost = postFilter.sortingHandler(newPostArray);
+        console.log(filteredPost);
+        //Image
+        if (e.hasOwnProperty("image")) {
+          const mediaImage = new MediaFactory("image", e);
+          const TemplateImage = new MediaList(mediaImage);
+          this.$main.appendChild(TemplateImage.createMediaList("image"));
+          // Video
+        } else if (e.hasOwnProperty("video")) {
+          const mediaVideo = new MediaFactory("video", e);
+          const TemplateVideo = new MediaList(mediaVideo);
+          this.$main.appendChild(TemplateVideo.createMediaList("video"));
+        }
       }
     });
+    // for (let i = 0; i < allMediasData.length; i++) {
+    //   if (allMediasData[i].photographerId == this.id) {
+    //     newPostArray.push(allMediasData[i]);
+    //     console.log(newPostArray);
+    //     const filteredPost = postFilter.sortingHandler(newPostArray);
+    //     console.log(filteredPost);
+    //     //Image
+    //     if (filteredPost[i].hasOwnProperty("image")) {
+    //       const mediaImage = new MediaFactory("image", filteredPost[i]);
+    //       const TemplateImage = new MediaList(mediaImage);
+    //       this.$main.appendChild(TemplateImage.createMediaList("image"));
+    //       // Video
+    //     } else if (filteredPost[i].hasOwnProperty("video")) {
+    //       const mediaVideo = new MediaFactory("video", filteredPost[i]);
+    //       const TemplateVideo = new MediaList(mediaVideo);
+    //       this.$main.appendChild(TemplateVideo.createMediaList("video"));
+    //     }
+    //   }
+    // }
     // Insertion de la languette customized (nombre de like et prix du photographe)
     const IdedPortfolio = await this.photographersApi.getPortfolioByUserId(
       this.id

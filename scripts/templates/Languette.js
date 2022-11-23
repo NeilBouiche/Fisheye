@@ -24,20 +24,22 @@ class Languette {
     let postLike = document.querySelectorAll(".post-like");
     let languetteLikeText = document.querySelector(".languette-like-text");
     let isLiked = false;
-    postHeart.forEach((e) => {
-      e.addEventListener("click", () => {
-        if (!isLiked || e.classList.contains("fa-regular")) {
-          e.classList.replace("fa-regular", "fa-solid");
-          postLike.textContent++;
+    for (let i = 0; i < postHeart.length; i++) {
+      postHeart[i].addEventListener("click", () => {
+        if (!isLiked || postHeart[i].classList.contains("fa-regular")) {
+          postHeart[i].classList.replace("fa-regular", "fa-solid");
+          postLike[i].textContent++;
           languetteLikeText.textContent++;
           isLiked = true;
-        } else if ((isLiked = true && e.classList.contains("fa-solid"))) {
-          e.classList.replace("fa-solid", "fa-regular");
-          postLike.textContent--;
+        } else if (
+          (isLiked = true && postHeart[i].classList.contains("fa-solid"))
+        ) {
+          postHeart[i].classList.replace("fa-solid", "fa-regular");
+          postLike[i].textContent--;
           languetteLikeText.textContent--;
           isLiked = false;
         }
       });
-    });
+    }
   }
 }

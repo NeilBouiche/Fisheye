@@ -43,4 +43,37 @@ class Filter {
       });
     }
   }
+
+  sortingHandler(data) {
+    const filterOption = document.getElementsByClassName("custom-option");
+    const filterSelected = document.querySelector(".select__trigger span");
+    for (let i = 0; i < filterOption.length; i++) {
+      filterOption[i].addEventListener("click", () => {
+        if (filterSelected.innerHTML == "Popularité") {
+          data.sort((a, b) => a.likes - b.likes);
+          console.log(data);
+          return data;
+        } else if (filterSelected.innerHTML == "Date") {
+          data.sort((a, b) => b.date - a.date);
+          console.log(data);
+          return data;
+        } else if (filterSelected.innerHTML == "Titre") {
+          data.sort(function (a, b) {
+            if (a.title < b.title) {
+              return -1;
+            }
+            if (a.title > b.title) {
+              return 1;
+            }
+            return 0;
+          });
+          console.log(data);
+          return data;
+        } else {
+          data.sort((a, b) => b.date - a.date);
+          return data;
+        }
+      });
+    }
+  }
 }
