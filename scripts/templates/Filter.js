@@ -8,13 +8,13 @@ class Filter {
     <p class="filter-text">Filtrer par</p>
     <div class="select-wrapper">
         <div class="select">
-            <div class="select__trigger"><span>Popularité</span>
+            <div class="select__trigger" role="button" aria-haspopup="listbox" aria-expanded="false"  tabindex="0"><span>Popularité</span>
                 <div class="arrow"></div>
             </div>
-            <div class="custom-options">
-                <span  id="filter__option1" class="custom-option selected" role="option" tabindex="-1" data-value="Popularité">Popularité</span>
-                <span  id="filter__option2" class="custom-option" role="option" tabindex="-1" data-value="date">Date</span>
-                <span  id="filter__option3" class="custom-option" role="option" tabindex="-1" data-value="titre">Titre</span>
+            <div class="custom-options" role="listbox">
+                <span  id="filter__option1" class="custom-option selected" aria-label="Trier par popularité" role="option" tabindex="0" data-value="Popularité">Popularité</span>
+                <span  id="filter__option2" class="custom-option" aria-label="Trier par date" role="option" tabindex="0" data-value="date">Date</span>
+                <span  id="filter__option3" class="custom-option" aria-label="Trier par titre" role="option" tabindex="0" data-value="titre">Titre</span>
             </div>
         </div>
     </div>
@@ -25,9 +25,21 @@ class Filter {
 
   dropDownhandler() {
     const selectWrapper = document.querySelector(".select-wrapper");
+    const select = document.querySelector(".select");
     const customOptions = document.querySelectorAll(".custom-option");
+    const customOptionsLastChild = document.querySelector(
+      ".custom-option span:last-child"
+    );
+    const selectBox = document.querySelector(".select__trigger");
     selectWrapper.addEventListener("click", function () {
       this.querySelector(".select").classList.toggle("open");
+      if (selectBox.getAttribute("aria-expanded") == "false") {
+        selectBox.setAttribute("aria-expanded", "true");
+        console.log("true");
+      } else {
+        selectBox.setAttribute("aria-expanded", "false");
+        console.log("false");
+      }
     });
     for (const option of customOptions) {
       option.addEventListener("click", function () {
@@ -42,6 +54,13 @@ class Filter {
         }
       });
     }
+    // Ferme les filtres si on clique ailleur
+    window.addEventListener("click", function (e) {
+      const select = document.querySelector(".select");
+      if (!select.contains(e.target)) {
+        select.classList.remove("open");
+      }
+    });
   }
 
   sortingHandler(data) {

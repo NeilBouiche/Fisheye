@@ -78,14 +78,18 @@ class Profil {
     let mediaCollection = document.getElementsByClassName("post-media");
     mediaCollection = [...mediaCollection];
     for (let i = 0; i < mediaCollection.length; i++) {
-      mediaCollection[i].addEventListener("click", () => {
-        const userLightBox = new LightBox(mediaCollection[i]);
-        const renderLightBox = userLightBox.createLightBox();
-        userLightBox.openLightBox();
-        userLightBox.closeLightBox();
-        userLightBox.prev(mediaCollection[i - 1]);
-        userLightBox.next(mediaCollection[i + 1]);
-        this.$body.appendChild(renderLightBox);
+      ["click", "keydown"].forEach((event) => {
+        mediaCollection[i].addEventListener(event, (key) => {
+          if (key.code == "Enter" || event == "click") {
+            const userLightBox = new LightBox(mediaCollection[i]);
+            const renderLightBox = userLightBox.createLightBox();
+            userLightBox.openLightBox();
+            userLightBox.closeLightBox();
+            userLightBox.prev(mediaCollection[i - 1]);
+            userLightBox.next(mediaCollection[i + 1]);
+            this.$body.appendChild(renderLightBox);
+          }
+        });
       });
     }
   }

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr">
   <head>
     <link href="css/style.css" rel="stylesheet" type="text/css" />
     <meta charset="utf-8" />
@@ -20,7 +20,11 @@
   <body>
     <header>
       <a href=""
-        ><img src="assets/images/logo.png" href="./index.html" class="logo"
+        ><img
+          src="assets/images/logo.png"
+          alt="Logo de FishEye"
+          href="index.html"
+          class="logo"
       /></a>
     </header>
     <main id="main">
@@ -33,20 +37,55 @@
       <div class="modal">
         <header>
           <h2>Contactez-moi</h2>
-          <img src="assets/icons/close.svg" onclick="closeModal()" />
+          <img
+            src="assets/icons/close.svg"
+            onclick="closeModal()"
+            tabindex="1"
+            aria-label="Fermer le formulaire"
+          />
         </header>
         <form>
           <div class="input-container">
             <label for="prénom">Prénom</label>
-            <input type="text" id="prenom" />
+            <input
+              type="text"
+              id="prenom"
+              name="prenom"
+              aria-label="Renseignez votre prénom"
+              tabindex="0"
+            />
             <label for="nom">Nom</label>
-            <input type="text" id="nom" />
+            <input
+              type="text"
+              id="nom"
+              name="nom"
+              aria-label="Renseignez votre nom"
+              tabindex="0"
+            />
             <label for="email">Email</label>
-            <input type="email" id="email" />
+            <input
+              type="email"
+              id="email"
+              name="email"
+              aria-label="Renseignez votre email"
+              tabindex="0"
+            />
             <label for="message">Message</label>
-            <textarea id="message" res></textarea>
+            <textarea
+              id="message"
+              name="message"
+              aria-label="Ecrivez votre message"
+              tabindex="0"
+            ></textarea>
           </div>
-          <button class="contact_button">Envoyer</button>
+          <button
+            class="contact_button"
+            value="envoyez"
+            aria-label="Envoyez les informations renseignée"
+            tabindex="0"
+          >
+            Envoyer
+          </button>
         </form>
       </div>
     </div>

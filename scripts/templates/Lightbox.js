@@ -28,8 +28,8 @@ class LightBox {
         <div class="lightbox">
             <i class="fa-solid chevron fa-chevron-left prev-media"></i>
             <div class="lightbox-text">
-                <video alt="${this._data.getAttribute(
-                  "alt"
+                <video title="${this._data.getAttribute(
+                  "title"
                 )}" class="lightbox-media lightbox-video lightbox-active" autoplay loop src="${this._data.getAttribute(
         "src"
       )}"></video>
@@ -58,6 +58,13 @@ class LightBox {
       $wrapper.style.display = "none";
       main.style.display = "block";
       header.style.display = "block";
+    });
+    document.addEventListener("keydown", function (e) {
+      if (e.code == "Escape") {
+        $wrapper.style.display = "none";
+        main.style.display = "block";
+        header.style.display = "block";
+      }
     });
   }
 

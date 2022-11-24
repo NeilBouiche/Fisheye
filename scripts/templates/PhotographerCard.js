@@ -9,8 +9,8 @@ class PhotographerCard {
     const $wrapper = document.createElement("article");
 
     const photographerCard = `
-            <a href="./photographer.html?id=${this._photographer.id}" aria-description="Zone clickable pour accéder aux informations du photographe">
-                <img src="${this._photographer.portrait}">
+            <a href="./photographer.html?id=${this._photographer.id}" role="link" aria-description="Zone clickable pour accéder aux informations du photographe">
+                <img src="${this._photographer.portrait}" alt="Photo de ${this._photographer.name}">
                 <h2>${this._photographer.name}</h2>
             </a>    
             <div aria-description="Présentation de ${this._photographer.name}">

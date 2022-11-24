@@ -11,12 +11,12 @@ class MediaList {
 
     if (type === "image") {
       const imageMedia = `
-            <img alt="${this._media.title}" id="${this._media.id}" class="post-media post-img" src="${this._media.image}">
+            <img alt="${this._media.title}" id="${this._media.id}" class="post-media post-img" src="${this._media.image}" tabindex="0">
             <div>
                 <h3>${this._media.title}</h3>
                 <div>
                     <p class="post-like">${this._media.likes}</p>
-                    <i class="fa-regular fa-heart post-heart"/></i>
+                    <i class="fa-regular fa-heart post-heart" aria-label="Liker la photo" tabindex="0"/></i>
                 </div>
             </div>
         `;
@@ -30,7 +30,7 @@ class MediaList {
                 <h3>${this._media.title}</h3>
                 <div>
                     <p class="post-like">${this._media.likes}</p>
-                    <i class="fa-regular fa-heart post-heart"/></i>
+                    <i class="fa-regular fa-heart post-heart" aria-label="Liker la video"/></i>
                 </div>
             </div>
         `;

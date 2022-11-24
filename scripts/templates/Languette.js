@@ -25,20 +25,24 @@ class Languette {
     let languetteLikeText = document.querySelector(".languette-like-text");
     let isLiked = false;
     for (let i = 0; i < postHeart.length; i++) {
-      postHeart[i].addEventListener("click", () => {
-        if (!isLiked || postHeart[i].classList.contains("fa-regular")) {
-          postHeart[i].classList.replace("fa-regular", "fa-solid");
-          postLike[i].textContent++;
-          languetteLikeText.textContent++;
-          isLiked = true;
-        } else if (
-          (isLiked = true && postHeart[i].classList.contains("fa-solid"))
-        ) {
-          postHeart[i].classList.replace("fa-solid", "fa-regular");
-          postLike[i].textContent--;
-          languetteLikeText.textContent--;
-          isLiked = false;
-        }
+      ["click", "keydown"].forEach((e) => {
+        postHeart[i].addEventListener(e, (key) => {
+          if (key.code == "Enter" || e == "click") {
+            if (!isLiked || postHeart[i].classList.contains("fa-regular")) {
+              postHeart[i].classList.replace("fa-regular", "fa-solid");
+              postLike[i].textContent++;
+              languetteLikeText.textContent++;
+              isLiked = true;
+            } else if (
+              (isLiked = true && postHeart[i].classList.contains("fa-solid"))
+            ) {
+              postHeart[i].classList.replace("fa-solid", "fa-regular");
+              postLike[i].textContent--;
+              languetteLikeText.textContent--;
+              isLiked = false;
+            }
+          }
+        });
       });
     }
   }
