@@ -40,8 +40,9 @@
           <img
             src="assets/icons/close.svg"
             onclick="closeModal()"
-            tabindex="1"
+            tabindex="6"
             aria-label="Fermer le formulaire"
+            class="contact-close"
           />
         </header>
         <form>
@@ -52,7 +53,7 @@
               id="prenom"
               name="prenom"
               aria-label="Renseignez votre prénom"
-              tabindex="0"
+              tabindex="1"
             />
             <label for="nom">Nom</label>
             <input
@@ -60,7 +61,7 @@
               id="nom"
               name="nom"
               aria-label="Renseignez votre nom"
-              tabindex="0"
+              tabindex="2"
             />
             <label for="email">Email</label>
             <input
@@ -68,21 +69,21 @@
               id="email"
               name="email"
               aria-label="Renseignez votre email"
-              tabindex="0"
+              tabindex="3"
             />
             <label for="message">Message</label>
             <textarea
               id="message"
               name="message"
               aria-label="Ecrivez votre message"
-              tabindex="0"
+              tabindex="4"
             ></textarea>
           </div>
           <button
             class="contact_button"
             value="envoyez"
             aria-label="Envoyez les informations renseignée"
-            tabindex="0"
+            tabindex="5"
           >
             Envoyer
           </button>

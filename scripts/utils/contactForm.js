@@ -3,19 +3,34 @@ const main = document.querySelector("main");
 const header = document.querySelector("header");
 const modalBox = document.querySelector(".modal");
 const form = document.querySelector("form");
+const closeContact = document.querySelector(".close-contact");
+let modalOpen = false;
 
 function displayModal() {
-  form.focus();
   modal.style.display = "block";
-  main.style.opacity = 0.3;
-  header.style.opacity = 0.3;
+  main.style.display = "none";
+  header.style.opacity = 0.5;
+  document.getElementById("prenom").focus();
+  modalOpen = true;
+  if (modalOpen === true) {
+    document.addEventListener("keydown", (e) => {
+      if (e.code == "Escape") {
+        closeModal();
+      }
+    });
+    document.addEventListener("click", (e) => {
+      if (e.target.closest(".contact_modal")) {
+        closeModal();
+      }
+    });
+  }
 }
 
 function closeModal() {
   modal.style.display = "none";
-  main.style.opacity = 1;
+  main.style.display = "block";
   header.style.opacity = 1;
-  main.focus();
+  modalOpen = false;
 }
 
 let prenom = document.getElementById("prenom");
