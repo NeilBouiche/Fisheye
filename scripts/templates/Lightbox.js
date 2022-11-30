@@ -67,34 +67,4 @@ class LightBox {
       }
     });
   }
-
-  prev(mediaCollectionItem) {
-    const mediaContent = document.querySelector(".lightbox-text");
-    const prev = document.querySelector(".prev-media");
-    prev.addEventListener("click", () => {
-      mediaContent.innerHTML = "";
-      const prevContent = mediaCollectionItem.cloneNode(true);
-      const prevTitle = document.createElement("p");
-      prevTitle.innerHTML = !prevContent.getAttribute("alt")
-        ? prevContent.getAttribute("title")
-        : prevContent.getAttribute("alt");
-      prevContent.classList.replace("post-media", "lightbox-media");
-      mediaContent.append(prevContent, prevTitle);
-    });
-  }
-
-  next(mediaCollectionItem) {
-    const mediaContent = document.querySelector(".lightbox-text");
-    const next = document.querySelector(".next-media");
-    next.addEventListener("click", () => {
-      mediaContent.innerHTML = "";
-      const nextContent = mediaCollectionItem.cloneNode(true);
-      const nextTitle = document.createElement("p");
-      nextTitle.innerHTML = !nextContent.getAttribute("alt")
-        ? nextContent.getAttribute("title")
-        : nextContent.getAttribute("alt");
-      nextContent.classList.replace("post-media", "lightbox-media");
-      mediaContent.append(nextContent, nextTitle);
-    });
-  }
 }

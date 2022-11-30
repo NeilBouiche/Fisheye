@@ -35,10 +35,8 @@ class Filter {
       this.querySelector(".select").classList.toggle("open");
       if (selectBox.getAttribute("aria-expanded") == "false") {
         selectBox.setAttribute("aria-expanded", "true");
-        console.log("true");
       } else {
         selectBox.setAttribute("aria-expanded", "false");
-        console.log("false");
       }
     });
     for (const option of customOptions) {
@@ -70,11 +68,11 @@ class Filter {
       filterOption[i].addEventListener("click", () => {
         if (filterSelected.innerHTML == "Popularité") {
           data.sort((a, b) => a.likes - b.likes);
-          console.log(data);
+          // console.log(data);
           return data;
         } else if (filterSelected.innerHTML == "Date") {
           data.sort((a, b) => b.date - a.date);
-          console.log(data);
+          // console.log(data);
           return data;
         } else if (filterSelected.innerHTML == "Titre") {
           data.sort(function (a, b) {
@@ -86,7 +84,7 @@ class Filter {
             }
             return 0;
           });
-          console.log(data);
+          // console.log(data);
           return data;
         } else {
           data.sort((a, b) => b.date - a.date);

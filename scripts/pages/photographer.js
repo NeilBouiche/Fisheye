@@ -85,10 +85,22 @@ class Profil {
             const renderLightBox = userLightBox.createLightBox();
             userLightBox.openLightBox();
             userLightBox.closeLightBox();
-            userLightBox.prev(mediaCollection[i - 1]);
-            userLightBox.next(mediaCollection[i + 1]);
             this.$body.appendChild(renderLightBox);
           }
+          const prev = document.querySelector(".prev-media");
+          prev.addEventListener("click", () => {
+            const prevLightBox = new LightBox(mediaCollection[i - 1]);
+            const renderPrevLightBox = prevLightBox.createLightBox();
+            prevLightBox.closeLightBox();
+            this.$body.appendChild(renderPrevLightBox);
+          });
+          const next = document.querySelector(".next-media");
+          next.addEventListener("click", () => {
+            const nextLightBox = new LightBox(mediaCollection[i + 1]);
+            const renderNextLightBox = nextLightBox.createLightBox();
+            nextLightBox.closeLightBox();
+            this.$body.appendChild(renderNextLightBox);
+          });
         });
       });
     }
