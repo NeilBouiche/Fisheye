@@ -13,7 +13,7 @@ class Banner {
         <div class="photograph-header__textBlock">
             <h1>${this._photographer.name}</h1>
             <h2>${this._photographer.city}, ${this._photographer.country}</h2>
-            <p aria-description='Texte de présentation du photographe'>${this._photographer.tagline}</p>
+            <p>${this._photographer.tagline}</p>
         </div>
         <button tabindex="0" class="contact_button" name="Contactez-moi" onclick="displayModal()">
         Contactez-moi

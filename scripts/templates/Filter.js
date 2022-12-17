@@ -1,5 +1,7 @@
 class Filter {
-  constructor() {}
+  constructor() {
+    this.$main = document.getElementById("main");
+  }
 
   createFilter() {
     const $wrapper = document.querySelector(".filter-container");
@@ -25,19 +27,19 @@ class Filter {
 
   dropDownhandler() {
     const selectWrapper = document.querySelector(".select-wrapper");
-    const select = document.querySelector(".select");
     const customOptions = document.querySelectorAll(".custom-option");
-    const customOptionsLastChild = document.querySelector(
-      ".custom-option span:last-child"
-    );
     const selectBox = document.querySelector(".select__trigger");
-    selectWrapper.addEventListener("click", function () {
-      this.querySelector(".select").classList.toggle("open");
-      if (selectBox.getAttribute("aria-expanded") == "false") {
-        selectBox.setAttribute("aria-expanded", "true");
-      } else {
-        selectBox.setAttribute("aria-expanded", "false");
-      }
+    ["click", "keydown"].forEach((e) => {
+      selectWrapper.addEventListener(e, (key) => {
+        if (key.code == "Enter" || e == "click") {
+          document.querySelector(".select").classList.toggle("open");
+          if (selectBox.getAttribute("aria-expanded") == "false") {
+            selectBox.setAttribute("aria-expanded", "true");
+          } else {
+            selectBox.setAttribute("aria-expanded", "false");
+          }
+        }
+      });
     });
     for (const option of customOptions) {
       option.addEventListener("click", function () {
@@ -51,6 +53,19 @@ class Filter {
           ).textContent = this.textContent;
         }
       });
+      option.addEventListener("keydown", function (key) {
+        if (key.code == "Enter") {
+          if (!this.classList.contains("selected")) {
+            this.parentNode
+              .querySelector(".custom-option.selected")
+              .classList.remove("selected");
+            this.classList.add("selected");
+            this.closest(".select").querySelector(
+              ".select__trigger span"
+            ).textContent = this.textContent;
+          }
+        }
+      });
     }
     // Ferme les filtres si on clique ailleur
     window.addEventListener("click", function (e) {
@@ -60,36 +75,64 @@ class Filter {
       }
     });
   }
-
-  sortingHandler(data) {
+  //Insertion de la liste des posts
+  postGeneration(data) {
+    data.forEach((e) => {
+      if (e.hasOwnProperty("image")) {
+        const mediaImage = new MediaFactory("image", e);
+        const TemplateImage = new MediaList(mediaImage);
+        this.$main.appendChild(TemplateImage.createMediaList("image"));
+      } else if (e.hasOwnProperty("video")) {
+        const mediaVideo = new MediaFactory("video", e);
+        const TemplateVideo = new MediaList(mediaVideo);
+        this.$main.appendChild(TemplateVideo.createMediaList("video"));
+      }
+    });
+  }
+  // Insertion de la languette
+  languetteAndLike(data, photographer) {
+    const userLanguette = new Languette(data, photographer);
+    userLanguette.languetteLike(data);
+    this.$main.appendChild(userLanguette.createLanguette());
+    userLanguette.likeHandler();
+  }
+  // Fonction de trie et d'affichage des donnees triées ainsi que de la languette
+  displayMediasAndLanguette(data, photographer) {
     const filterOption = document.getElementsByClassName("custom-option");
     const filterSelected = document.querySelector(".select__trigger span");
+    const $wrapper = document.querySelector(".media-container");
+    data.sort((a, b) => b.likes - a.likes);
+    this.postGeneration(data);
+    this.languetteAndLike(data, photographer);
     for (let i = 0; i < filterOption.length; i++) {
-      filterOption[i].addEventListener("click", () => {
-        if (filterSelected.innerHTML == "Popularité") {
-          data.sort((a, b) => a.likes - b.likes);
-          console.log(data);
-          return data;
-        } else if (filterSelected.innerHTML == "Date") {
-          data.sort((a, b) => b.date - a.date);
-          console.log(data);
-          return data;
-        } else if (filterSelected.innerHTML == "Titre") {
-          data.sort(function (a, b) {
-            if (a.title < b.title) {
-              return -1;
+      ["click", "keydown"].forEach((e) => {
+        filterOption[i].addEventListener(e, (key) => {
+          if (key.code == "Enter" || e == "click") {
+            $wrapper.innerHTML = "";
+            if (filterSelected.innerHTML === "Popularité") {
+              data.sort((a, b) => b.likes - a.likes);
+              this.postGeneration(data);
+              this.languetteAndLike(data, photographer);
+            } else if (filterSelected.innerHTML === "Date") {
+              data.sort((a, b) => b.date - a.date);
+              this.postGeneration(data);
+              this.languetteAndLike(data, photographer);
+              console.log(data);
+            } else if (filterSelected.innerHTML === "Titre") {
+              data.sort(function (a, b) {
+                if (a.title < b.title) {
+                  return -1;
+                }
+                if (a.title > b.title) {
+                  return 1;
+                }
+                return 0;
+              });
+              this.postGeneration(data);
+              this.languetteAndLike(data, photographer);
             }
-            if (a.title > b.title) {
-              return 1;
-            }
-            return 0;
-          });
-          console.log(data);
-          return data;
-        } else {
-          data.sort((a, b) => b.date - a.date);
-          return data;
-        }
+          }
+        });
       });
     }
   }

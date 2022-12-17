@@ -1,7 +1,15 @@
 class Languette {
   constructor(dataLike, dataPrice) {
-    this._likes = dataLike;
+    this._likes = dataLike.likes;
     this._photographerPrice = dataPrice.price;
+  }
+
+  languetteLike(data) {
+    this._likes = 0;
+    for (let i = 0; i < data.length; i++) {
+      const mediaLikes = data[i].likes;
+      this._likes += mediaLikes;
+    }
   }
 
   createLanguette() {
