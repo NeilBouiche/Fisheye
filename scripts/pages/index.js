@@ -14,7 +14,7 @@ class Accueil {
     photographersData
       .map((photographer) => new Photographers(photographer))
       .forEach((photographer) => {
-        const Template = new PhotographerCard(photographer);
+        const Template = new PhotographerFactory("card", photographer);
         this.$photographersWrapper.appendChild(
           Template.createPhotographerCard()
         );

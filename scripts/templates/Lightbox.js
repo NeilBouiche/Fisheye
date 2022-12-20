@@ -50,15 +50,15 @@ class LightBox {
       prev.addEventListener(e, (key) => {
         if (key.code == "Enter" || e == "click") {
           this._index--;
-          if (this._index <= 0) {
+          if (this._index < 0) {
             this._index = data.length - 1;
           }
           const currentItem = data[this._index];
           const lightBoxMedia = document.querySelector(".lightbox-text");
           if (currentItem.src.includes(".mp4")) {
-            lightBoxMedia.innerHTML = `<video title="${currentItem.title}" class="lightbox-media lightbox-video lightbox-active" autoplay loop src="${currentItem.src}"></video><p>${currentItem.title}</p>`;
+            lightBoxMedia.innerHTML = `<video title="${currentItem.title}" class="lightbox-media lightbox-video lightbox-active" autoplay loop src="${currentItem.src}"></video><h3>${currentItem.title}</h3>`;
           } else {
-            lightBoxMedia.innerHTML = `<img alt="${currentItem.alt}" class="lightbox-media lightbox-img lightbox-active" src="${currentItem.src}"/><p>${currentItem.alt}</p>`;
+            lightBoxMedia.innerHTML = `<img alt="${currentItem.alt}" class="lightbox-media lightbox-img lightbox-active" src="${currentItem.src}"/><h3>${currentItem.alt}</h3>`;
           }
         }
       });
@@ -77,9 +77,9 @@ class LightBox {
           const currentItem = data[this._index];
           const lightBoxMedia = document.querySelector(".lightbox-text");
           if (currentItem.src.includes(".mp4")) {
-            lightBoxMedia.innerHTML = `<video title="${currentItem.title}" class="lightbox-media lightbox-video lightbox-active" autoplay loop src="${currentItem.src}"></video><p>${currentItem.title}</p>`;
+            lightBoxMedia.innerHTML = `<video title="${currentItem.title}" class="lightbox-media lightbox-video lightbox-active" autoplay loop src="${currentItem.src}"></video><h3>${currentItem.title}</h3>`;
           } else {
-            lightBoxMedia.innerHTML = `<img alt="${currentItem.alt}" class="lightbox-media lightbox-img lightbox-active" src="${currentItem.src}"/><p>${currentItem.alt}</p>`;
+            lightBoxMedia.innerHTML = `<img alt="${currentItem.alt}" class="lightbox-media lightbox-img lightbox-active" src="${currentItem.src}"/><h3>${currentItem.alt}</h3>`;
           }
         }
       });

@@ -1,5 +1,4 @@
 // class modele des photographes
-
 class Photographers {
   constructor(data) {
     this._name = data.name;

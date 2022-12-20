@@ -1,5 +1,4 @@
 // class template qui permet de mettre en page la partie Banner de la page photographe
-
 class Banner {
   constructor(photographer) {
     this._photographer = photographer;

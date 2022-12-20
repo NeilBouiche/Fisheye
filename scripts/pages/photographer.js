@@ -15,7 +15,7 @@ class Profil {
       await this.photographersApi.getPortfolioByUserId(this.id);
     // Creation d'un photographe pour le profile et assignement de la banner
     const IdedPhotographer = new Photographers(photographerIdedData);
-    const TemplateBanner = new Banner(IdedPhotographer);
+    const TemplateBanner = new PhotographerFactory("banner", IdedPhotographer);
     this.$main.appendChild(TemplateBanner.createBanner());
     //Insertion du filtre
     const postFilter = new Filter();

@@ -114,7 +114,17 @@ class Filter {
               this.postGeneration(data);
               this.languetteAndLike(data, photographer);
             } else if (filterSelected.innerHTML === "Date") {
-              data.sort((a, b) => b.date - a.date);
+              data.sort(function (a, b) {
+                const dateA = new Date(a.date);
+                const dateB = new Date(b.date);
+                if (dateB < dateA) {
+                  return -1;
+                }
+                if (dateB > dateA) {
+                  return 1;
+                }
+                return 0;
+              });
               this.postGeneration(data);
               this.languetteAndLike(data, photographer);
               console.log(data);

@@ -1,5 +1,4 @@
 // class modele des medias
-
 class Image {
   constructor(data) {
     this._id = data.id;
