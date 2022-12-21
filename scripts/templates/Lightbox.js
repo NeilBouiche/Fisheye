@@ -9,7 +9,7 @@ class LightBox {
     if (this._data.classList.contains("post-img")) {
       const lightBox = `
         <div class="lightbox">
-            <i class="fa-solid chevron fa-chevron-left prev-media" aria-label="Passer au medias précédent" tabindex="1"></i>
+            <i class="fa-solid chevron fa-chevron-left prev-media" aria-description="Passer au medias précédent" tabindex="1"></i>
             <div class="lightbox-text">
                 <img alt="${this._data.getAttribute(
                   "alt"
@@ -18,15 +18,15 @@ class LightBox {
       )}"/>
                 <h3>${this._data.getAttribute("alt")}</h3>
             </div>
-      <i class="fa-solid chevron fa-chevron-right next-media" aria-label="Passer au medias suivant"tabindex="2"></i>
-      <i class="close-lightbox fa-solid croix fa-x" aria-label="Fermer la vue agrandie" tabindex="3"></i>
+      <i class="fa-solid chevron fa-chevron-right next-media" aria-description="Passer au medias suivant"tabindex="2"></i>
+      <i class="close-lightbox fa-solid croix fa-x" aria-description="Fermer la vue agrandie" tabindex="3"></i>
         </div>
     `;
       $wrapper.innerHTML = lightBox;
     } else if (this._data.classList.contains("post-video")) {
       const lightBox = `
         <div class="lightbox">
-            <i class="fa-solid chevron fa-chevron-left prev-media" aria-label="Passer au medias précédent" tabindex="1"></i>
+            <i class="fa-solid chevron fa-chevron-left prev-media" aria-description="Passer au medias précédent" tabindex="1"></i>
             <div class="lightbox-text">
                 <video title="${this._data.getAttribute(
                   "title"
@@ -35,8 +35,8 @@ class LightBox {
       )}"></video>
                 <h3>${this._data.getAttribute("title")}</h3>
             </div>
-            <i class="fa-solid chevron fa-chevron-right next-media" aria-label="Passer au medias suivant" tabindex="2"></i>
-            <i class="close-lightbox fa-solid croix fa-x" aria-label="Fermer la vue agrandie" tabindex="3"></i>
+            <i class="fa-solid chevron fa-chevron-right next-media" aria-description="Passer au medias suivant" tabindex="2"></i>
+            <i class="close-lightbox fa-solid croix fa-x" aria-description="Fermer la vue agrandie" tabindex="3"></i>
         </div>
 `;
       $wrapper.innerHTML = lightBox;

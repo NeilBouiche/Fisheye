@@ -19,11 +19,6 @@ function displayModal() {
         closeModal();
       }
     });
-    document.addEventListener("click", (e) => {
-      if (e.target.closest(".contact_modal")) {
-        closeModal();
-      }
-    });
   }
 }
 
@@ -47,12 +42,3 @@ form.addEventListener("submit", (event) => {
   console.log(message.value);
   return false;
 });
-
-if (modal.style.display === "block") {
-  document.onkeydown = (e) => {
-    if (e.code === 27) {
-      closeModal();
-      console.log("okok");
-    }
-  };
-}

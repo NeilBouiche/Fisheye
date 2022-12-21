@@ -12,7 +12,7 @@ class MediaList {
 
     if (type === "image") {
       const imageMedia = `
-            <img alt="${this._media.title}" name="${this._media.title}" id="${this._media.id}" class="post-media post-img" src="${this._media.image}" aria-label="ouvrir la vue agrandie" tabindex="0">
+            <img alt="${this._media.title}" id="${this._media.id}" class="post-media post-img" src="${this._media.image}" aria-label="ouvrir la vue agrandie ${this._media.title}" tabindex="0">
             <div>
                 <h3>${this._media.title}</h3>
                 <div>
@@ -26,7 +26,7 @@ class MediaList {
 
     if (type === "video") {
       const videoMedia = `
-            <video title="${this._media.title}" name="${this._media.title}" id="${this._media.id}" class="post-media post-video" autoplay loop src="${this._media.video}" aria-label="ouvrir la vue agrandie"></video>
+            <video title="${this._media.title}" id="${this._media.id}" class="post-media post-video" autoplay loop src="${this._media.video}" aria-label="ouvrir la vue agrandie"></video>
             <div>
                 <h3>${this._media.title}</h3>
                 <div>
