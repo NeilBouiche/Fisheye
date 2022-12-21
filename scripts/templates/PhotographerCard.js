@@ -1,5 +1,4 @@
-// Class Template qui me permet de mettre en page et permet dans index.js de lier les valeurs a la base de données
-
+// Class Template qui me permet de mettre en page et permet dans index.js de lier les valeurs
 class PhotographerCard {
   constructor(photographer) {
     this._photographer = photographer;

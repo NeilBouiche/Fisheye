@@ -38,13 +38,13 @@ class MediaList {
       $postWrapper.innerHTML = videoMedia;
     }
     $wrapper.appendChild($postWrapper);
-    //Insertion de la LightBox
+    // Insertion de la LightBox
     let mediaCollection = document.querySelectorAll(".post-media");
     mediaCollection = [...mediaCollection];
     for (let i = 0; i < mediaCollection.length; i++) {
       ["click", "keydown"].forEach((e) => {
         mediaCollection[i].addEventListener(e, (key) => {
-          if (key.code == "Enter" || e == "click") {
+          if (key.code === "Enter" || e === "click") {
             const lightBox = new LightBox(
               mediaCollection[i],
               mediaCollection.indexOf(mediaCollection[i])

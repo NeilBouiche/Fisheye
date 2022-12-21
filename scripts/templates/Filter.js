@@ -31,9 +31,9 @@ class Filter {
     const selectBox = document.querySelector(".select__trigger");
     ["click", "keydown"].forEach((e) => {
       selectWrapper.addEventListener(e, (key) => {
-        if (key.code == "Enter" || e == "click") {
+        if (key.code === "Enter" || e === "click") {
           document.querySelector(".select").classList.toggle("open");
-          if (selectBox.getAttribute("aria-expanded") == "false") {
+          if (selectBox.getAttribute("aria-expanded") === "false") {
             selectBox.setAttribute("aria-expanded", "true");
           } else {
             selectBox.setAttribute("aria-expanded", "false");
@@ -54,7 +54,7 @@ class Filter {
         }
       });
       option.addEventListener("keydown", function (key) {
-        if (key.code == "Enter") {
+        if (key.code === "Enter") {
           if (!this.classList.contains("selected")) {
             this.parentNode
               .querySelector(".custom-option.selected")
@@ -68,14 +68,15 @@ class Filter {
       });
     }
     // Ferme les filtres si on clique ailleur
-    window.addEventListener("click", function (e) {
+    window.addEventListener("click", (e) => {
       const select = document.querySelector(".select");
       if (!select.contains(e.target)) {
         select.classList.remove("open");
       }
     });
   }
-  //Insertion de la liste des posts
+
+  // Insertion de la liste des posts
   postGeneration(data) {
     data.forEach((e) => {
       if (e.hasOwnProperty("image")) {
@@ -89,6 +90,7 @@ class Filter {
       }
     });
   }
+
   // Insertion de la languette
   languetteAndLike(data, photographer) {
     const userLanguette = new Languette(data, photographer);
@@ -96,6 +98,7 @@ class Filter {
     this.$main.appendChild(userLanguette.createLanguette());
     userLanguette.likeHandler();
   }
+
   // Fonction de trie et d'affichage des donnees triées ainsi que de la languette
   displayMediasAndLanguette(data, photographer) {
     const filterOption = document.getElementsByClassName("custom-option");
@@ -107,14 +110,14 @@ class Filter {
     for (let i = 0; i < filterOption.length; i++) {
       ["click", "keydown"].forEach((e) => {
         filterOption[i].addEventListener(e, (key) => {
-          if (key.code == "Enter" || e == "click") {
+          if (key.code === "Enter" || e === "click") {
             $wrapper.innerHTML = "";
             if (filterSelected.innerHTML === "Popularité") {
               data.sort((a, b) => b.likes - a.likes);
               this.postGeneration(data);
               this.languetteAndLike(data, photographer);
             } else if (filterSelected.innerHTML === "Date") {
-              data.sort(function (a, b) {
+              data.sort((a, b) => {
                 const dateA = new Date(a.date);
                 const dateB = new Date(b.date);
                 if (dateB < dateA) {
@@ -127,9 +130,8 @@ class Filter {
               });
               this.postGeneration(data);
               this.languetteAndLike(data, photographer);
-              console.log(data);
             } else if (filterSelected.innerHTML === "Titre") {
-              data.sort(function (a, b) {
+              data.sort((a, b) => {
                 if (a.title < b.title) {
                   return -1;
                 }

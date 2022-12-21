@@ -29,12 +29,12 @@ class Languette {
 
   likeHandler() {
     const postHeart = document.querySelectorAll(".post-heart");
-    let postLike = document.querySelectorAll(".post-like");
-    let languetteLikeText = document.querySelector(".languette-like-text");
+    const postLike = document.querySelectorAll(".post-like");
+    const languetteLikeText = document.querySelector(".languette-like-text");
     for (let i = 0; i < postHeart.length; i++) {
       ["click", "keydown"].forEach((e) => {
         postHeart[i].addEventListener(e, (key) => {
-          if (key.code == "Enter" || e == "click") {
+          if (key.code === "Enter" || e === "click") {
             if (postHeart[i].classList.contains("fa-regular")) {
               postHeart[i].classList.replace("fa-regular", "fa-solid");
               postLike[i].textContent++;

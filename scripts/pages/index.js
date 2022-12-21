@@ -1,4 +1,4 @@
-//Class qui se charge de connecter a l'api et insert le template pour chaque photographe
+// Class qui se charge de connecter a l'api et insert le template pour chaque photographe
 
 class Accueil {
   constructor() {
@@ -9,7 +9,7 @@ class Accueil {
   }
 
   async main() {
-    let photographersData = await this.photographersApi.getPhotographers();
+    const photographersData = await this.photographersApi.getPhotographers();
 
     photographersData
       .map((photographer) => new Photographers(photographer))

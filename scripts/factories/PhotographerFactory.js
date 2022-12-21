@@ -2,9 +2,11 @@ class PhotographerFactory {
   constructor(type, data) {
     if (type === "card") {
       return new PhotographerCard(data);
-    } else if (type === "banner") {
+    }
+    if (type === "banner") {
       return new Banner(data);
-    } else {
+    }
+    if (type === undefined) {
       throw "Format not supported";
     }
   }

@@ -1,3 +1,4 @@
+/* eslint-disable no-use-before-define */
 const modal = document.getElementById("contact_modal");
 const main = document.querySelector("main");
 const header = document.querySelector("header");
@@ -14,7 +15,7 @@ function displayModal() {
   modalOpen = true;
   if (modalOpen === true) {
     document.addEventListener("keydown", (e) => {
-      if (e.code == "Escape") {
+      if (e.code === "Escape") {
         closeModal();
       }
     });
@@ -33,12 +34,12 @@ function closeModal() {
   modalOpen = false;
 }
 
-let prenom = document.getElementById("prenom");
-let nom = document.getElementById("nom");
-let email = document.getElementById("email");
-let message = document.getElementById("message");
+const prenom = document.getElementById("prenom");
+const nom = document.getElementById("nom");
+const email = document.getElementById("email");
+const message = document.getElementById("message");
 
-form.addEventListener("submit", function (event) {
+form.addEventListener("submit", (event) => {
   event.preventDefault();
   console.log(prenom.value);
   console.log(nom.value);
@@ -48,7 +49,7 @@ form.addEventListener("submit", function (event) {
 });
 
 if (modal.style.display === "block") {
-  document.onkeydown = function (e) {
+  document.onkeydown = (e) => {
     if (e.code === 27) {
       closeModal();
       console.log("okok");

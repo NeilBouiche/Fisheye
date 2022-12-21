@@ -1,4 +1,4 @@
-//Class qui se charge de connecter a l'api et insert les templates neccessaires a la construction de la page
+// Class qui se charge de connecter a l'api et insert les templates
 class Profil {
   constructor() {
     this.$main = document.getElementById("main");
@@ -17,11 +17,11 @@ class Profil {
     const IdedPhotographer = new Photographers(photographerIdedData);
     const TemplateBanner = new PhotographerFactory("banner", IdedPhotographer);
     this.$main.appendChild(TemplateBanner.createBanner());
-    //Insertion du filtre
+    // Insertion du filtre
     const postFilter = new Filter();
     this.$main.appendChild(postFilter.createFilter());
     postFilter.dropDownhandler();
-    //Insertion de la liste des posts
+    // Insertion de la liste des posts
     postFilter.displayMediasAndLanguette(
       getPortfolioIdedData,
       photographerIdedData

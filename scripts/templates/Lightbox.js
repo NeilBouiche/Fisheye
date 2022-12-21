@@ -48,8 +48,8 @@ class LightBox {
     const prev = document.querySelector(".prev-media");
     ["click", "keydown"].forEach((e) => {
       prev.addEventListener(e, (key) => {
-        if (key.code == "Enter" || e == "click") {
-          this._index--;
+        if (key.code === "Enter" || e === "click") {
+          this._index -= 1;
           if (this._index < 0) {
             this._index = data.length - 1;
           }
@@ -69,8 +69,8 @@ class LightBox {
     const next = document.querySelector(".next-media");
     ["click", "keydown"].forEach((e) => {
       next.addEventListener(e, (key) => {
-        if (key.code == "Enter" || e == "click") {
-          this._index++;
+        if (key.code === "Enter" || e === "click") {
+          this._index += 1;
           if (this._index >= data.length) {
             this._index = 0;
           }
@@ -97,13 +97,13 @@ class LightBox {
   closeLightBox() {
     const $wrapper = document.querySelector(".lightbox-container");
     const closeLightBox = document.querySelector(".close-lightbox");
-    closeLightBox.addEventListener("click", function () {
+    closeLightBox.addEventListener("click", () => {
       $wrapper.style.display = "none";
       main.style.display = "block";
       header.style.display = "block";
     });
-    document.addEventListener("keydown", function (e) {
-      if (e.code == "Escape") {
+    document.addEventListener("keydown", (e) => {
+      if (e.code === "Escape") {
         $wrapper.style.display = "none";
         main.style.display = "block";
         header.style.display = "block";

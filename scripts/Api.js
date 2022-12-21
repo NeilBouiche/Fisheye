@@ -1,5 +1,5 @@
+/* eslint-disable eqeqeq */
 // class qui se charge d'effectuer une requete fetch
-
 class Api {
   constructor(url) {
     this._url = url;
@@ -8,9 +8,7 @@ class Api {
   async getPhotographers() {
     return fetch(this._url)
       .then((response) => response.json())
-      .then((response) => {
-        return response.photographers;
-      })
+      .then((response) => response.photographers)
       .catch((err) => {
         throw new Error("La requete api getPhotographer a échoué : ", err);
       });
@@ -19,11 +17,12 @@ class Api {
   async getPhotographerById(userId) {
     return fetch(this._url)
       .then((response) => response.json())
-      .then((response) => {
-        return response.photographers.filter(
-          (photographer) => photographer.id == userId
-        )[0];
-      })
+      .then(
+        (response) =>
+          response.photographers.filter(
+            (photographer) => photographer.id == userId
+          )[0]
+      )
       .catch((err) => {
         throw new Error("La requete api getPhotographer a échoué : ", err);
       });
@@ -32,9 +31,9 @@ class Api {
   async getPortfolioByUserId(userId) {
     return fetch(this._url)
       .then((response) => response.json())
-      .then((response) => {
-        return response.media.filter((media) => media.photographerId == userId);
-      })
+      .then((response) =>
+        response.media.filter((media) => media.photographerId == userId)
+      )
       .catch((err) => {
         throw new Error("La requete api getPhotographer a échoué : ", err);
       });
@@ -43,9 +42,7 @@ class Api {
   async getAllMedias() {
     return fetch(this._url)
       .then((response) => response.json())
-      .then((response) => {
-        return response.media;
-      })
+      .then((response) => response.media)
       .catch((err) => {
         throw new Error("La requete api getPhotographer a échoué : ", err);
       });
