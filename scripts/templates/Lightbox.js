@@ -46,6 +46,21 @@ class LightBox {
 
   prev(data) {
     const prev = document.querySelector(".prev-media");
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "ArrowLeft") {
+        this._index += 1;
+        if (this._index >= data.length) {
+          this._index = 0;
+        }
+        const currentItem = data[this._index];
+        const lightBoxMedia = document.querySelector(".lightbox-text");
+        if (currentItem.src.includes(".mp4")) {
+          lightBoxMedia.innerHTML = `<video title="${currentItem.title}" class="lightbox-media lightbox-video lightbox-active" autoplay loop src="${currentItem.src}"></video><h3>${currentItem.title}</h3>`;
+        } else {
+          lightBoxMedia.innerHTML = `<img alt="${currentItem.alt}" class="lightbox-media lightbox-img lightbox-active" src="${currentItem.src}"/><h3>${currentItem.alt}</h3>`;
+        }
+      }
+    });
     ["click", "keydown"].forEach((e) => {
       prev.addEventListener(e, (key) => {
         if (key.code === "Enter" || e === "click") {
@@ -67,6 +82,21 @@ class LightBox {
 
   next(data) {
     const next = document.querySelector(".next-media");
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "ArrowRight") {
+        this._index += 1;
+        if (this._index >= data.length) {
+          this._index = 0;
+        }
+        const currentItem = data[this._index];
+        const lightBoxMedia = document.querySelector(".lightbox-text");
+        if (currentItem.src.includes(".mp4")) {
+          lightBoxMedia.innerHTML = `<video title="${currentItem.title}" class="lightbox-media lightbox-video lightbox-active" autoplay loop src="${currentItem.src}"></video><h3>${currentItem.title}</h3>`;
+        } else {
+          lightBoxMedia.innerHTML = `<img alt="${currentItem.alt}" class="lightbox-media lightbox-img lightbox-active" src="${currentItem.src}"/><h3>${currentItem.alt}</h3>`;
+        }
+      }
+    });
     ["click", "keydown"].forEach((e) => {
       next.addEventListener(e, (key) => {
         if (key.code === "Enter" || e === "click") {
